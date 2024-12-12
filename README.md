@@ -14,20 +14,20 @@ http://localhost:8080
 ```
 
 ## Описание пайплайнов
-**0) DAG 1, файл** `dag_weather.py` 
+### **1.0 DAG 1, файл** `dag_weather.py` 
 - собирает данные с АПИ `Open meteo`
 - анализирует `dataset describe` and save to `weather_stats.csv`
 - строит графики `data/temperature_plot.png`
 
-**1) DAG 1 pipeline view**
+**1.1. DAG 1 pipeline view**
 
-![img_2.png](img_2.png)
+![img_2.png](img/img_2.png)
 
-**2) График температуры за день**
+**1.2. График температуры за день**
 
-![img_3.png](img_3.png)
+![img_3.png](img/img_3.png)
 
-**3) Weather stats**
+**1.3. Weather stats**
 
 `data/weather_temperature_stats.csv`
 ```csv
@@ -42,24 +42,26 @@ min,15.1
 max,15.6
 ```
 
-**0. DAG 2, файл** `dag_api_callers.py` 
+----
+
+### **2.0. DAG 2, файл** `dag_api_callers.py` 
 - calls 3 different public APIs, 
 - calls 1 API for download image (coffee.img, once if even day)
 - merge data by request time field
 - draw histogram
 
-**1. DAG 2 pipeline view**
+**2.1. DAG 2 pipeline view**
 
-![img_1.png](img_1.png)
+![img_1.png](img/img_1.png)
 
-**2. Гистограмма времени ответа всех апи** 
+**2.2. Гистограмма времени ответа всех апи** 
 
 (сделала по 5 реквестов чтобы rate limiter-ы не заблочили)
 `data/images/api_time_histogram.png`
 
-![img_4.png](img_4.png)
+![img_4.png](img/img_4.png)
 
-**3. Merged csv**
+**2.3. Merged csv**
 ```
 data/merged_api_data.csv
 ```
@@ -83,15 +85,15 @@ response,time,attempt
 "{'latitude': 51.125, 'longitude': 71.0, 'generationtime_ms': 0.030040740966796875, 'utc_offset_seconds': 18000, 'timezone': 'Asia/Almaty', 'timezone_abbreviation': '+05', 'elevation': 368.0, 'current_units': {'time': 'iso8601', 'interval': 'seconds', 'temperature_2m': '°C', 'precipitation': 'mm', 'weather_code': 'wmo code', 'pressure_msl': 'hPa'}, 'current': {'time': '2024-12-12T23:00', 'interval': 900, 'temperature_2m': -11.2, 'precipitation': 0.0, 'weather_code': 3, 'pressure_msl': 1025.1}}",314,4
 ```
 
-**4. Coffee image**
+**2.4. Coffee image**
 ```
 data/images/image_20241212_174606.png
 ```
 
-![img_5.png](img_5.png)
+![img_5.png](img/img_5.png)
 
 
-## Список вызываемых публичных АПИ, curl-s
+## Список использованных публичных АПИ, curl-s
 
 #### Open Meteo
 ```bash

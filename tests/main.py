@@ -25,7 +25,7 @@ class TestApiCallers(unittest.TestCase):
         flattened_data.to_csv(csv_file_path, index=False)
 
     def test_merged_api_data_read(self):
-        data = pd.read_csv('./data/merged_api_data.csv')
+        data = pd.read_csv('../data/merged_api_data.csv')
         print(data['time'].hist())
 
 
