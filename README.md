@@ -13,8 +13,14 @@ docker-compose up --build
 http://localhost:8080
 ```
 
+креды для входа в админку
+```
+login: admin
+pwd: admin
+```
+
 ## Описание пайплайнов
-### **1.0 DAG 1, файл** `dag_weather.py` 
+### **1. DAG 1, файл** `dag_weather.py` 
 - собирает данные с АПИ `Open meteo`
 - анализирует `dataset describe` and save to `weather_stats.csv`
 - строит графики `data/temperature_plot.png`
@@ -44,7 +50,7 @@ max,15.6
 
 ----
 
-### **2.0. DAG 2, файл** `dag_api_callers.py` 
+### **2. DAG 2, файл** `dag_api_callers.py` 
 - calls 3 different public APIs, 
 - calls 1 API for download image (coffee.img, once if even day)
 - merge data by request time field
