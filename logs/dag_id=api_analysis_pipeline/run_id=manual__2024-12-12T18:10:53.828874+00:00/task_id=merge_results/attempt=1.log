@@ -1,0 +1,42 @@
+[2024-12-12T18:11:03.419+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: api_analysis_pipeline.merge_results manual__2024-12-12T18:10:53.828874+00:00 [queued]>
+[2024-12-12T18:11:03.423+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: api_analysis_pipeline.merge_results manual__2024-12-12T18:10:53.828874+00:00 [queued]>
+[2024-12-12T18:11:03.423+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 3
+[2024-12-12T18:11:03.429+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): merge_results> on 2024-12-12 18:10:53.828874+00:00
+[2024-12-12T18:11:03.445+0000] {standard_task_runner.py:57} INFO - Started process 411 to run task
+[2024-12-12T18:11:03.452+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'api_analysis_pipeline', 'merge_results', 'manual__2024-12-12T18:10:53.828874+00:00', '--job-id', '590', '--raw', '--subdir', 'DAGS_FOLDER/dag_api_callers.py', '--cfg-path', '/tmp/tmpmohuv7il']
+[2024-12-12T18:11:03.454+0000] {standard_task_runner.py:85} INFO - Job 590: Subtask merge_results
+[2024-12-12T18:11:03.491+0000] {task_command.py:410} INFO - Running <TaskInstance: api_analysis_pipeline.merge_results manual__2024-12-12T18:10:53.828874+00:00 [running]> on host 812a0a040d80
+[2024-12-12T18:11:03.544+0000] {taskinstance.py:1545} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='api_analysis_pipeline' AIRFLOW_CTX_TASK_ID='merge_results' AIRFLOW_CTX_EXECUTION_DATE='2024-12-12T18:10:53.828874+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-12T18:10:53.828874+00:00'
+[2024-12-12T18:11:03.549+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_api_callers.py", line 37, in merge_results
+    all_data = pd.concat([pd.read_csv(f'/opt/airflow/data/{file}') for file in files])
+  File "/opt/airflow/dags/dag_api_callers.py", line 37, in <listcomp>
+    all_data = pd.concat([pd.read_csv(f'/opt/airflow/data/{file}') for file in files])
+  File "/home/airflow/.local/lib/python3.9/site-packages/pandas/util/_decorators.py", line 211, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/pandas/util/_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 950, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/airflow/.local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 605, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/airflow/.local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1442, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/airflow/.local/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1753, in _make_engine
+    return mapping[engine](f, **self.options)
+  File "/home/airflow/.local/lib/python3.9/site-packages/pandas/io/parsers/c_parser_wrapper.py", line 79, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 547, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 636, in pandas._libs.parsers.TextReader._get_header
+  File "pandas/_libs/parsers.pyx", line 852, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 1965, in pandas._libs.parsers.raise_parser_error
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+[2024-12-12T18:11:03.558+0000] {taskinstance.py:1345} INFO - Marking task as UP_FOR_RETRY. dag_id=api_analysis_pipeline, task_id=merge_results, execution_date=20241212T181053, start_date=20241212T181103, end_date=20241212T181103
+[2024-12-12T18:11:03.564+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 590 for task merge_results ('utf-8' codec can't decode byte 0x89 in position 0: invalid start byte; 411)
+[2024-12-12T18:11:03.593+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2024-12-12T18:11:03.609+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

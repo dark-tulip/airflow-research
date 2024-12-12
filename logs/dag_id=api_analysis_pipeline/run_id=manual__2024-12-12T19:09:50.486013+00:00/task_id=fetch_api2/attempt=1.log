@@ -1,0 +1,66 @@
+[2024-12-12T19:09:55.189+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: api_analysis_pipeline.fetch_api2 manual__2024-12-12T19:09:50.486013+00:00 [queued]>
+[2024-12-12T19:09:55.203+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: api_analysis_pipeline.fetch_api2 manual__2024-12-12T19:09:50.486013+00:00 [queued]>
+[2024-12-12T19:09:55.205+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 3
+[2024-12-12T19:09:55.215+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): fetch_api2> on 2024-12-12 19:09:50.486013+00:00
+[2024-12-12T19:09:55.233+0000] {standard_task_runner.py:57} INFO - Started process 386 to run task
+[2024-12-12T19:09:55.246+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'api_analysis_pipeline', 'fetch_api2', 'manual__2024-12-12T19:09:50.486013+00:00', '--job-id', '613', '--raw', '--subdir', 'DAGS_FOLDER/dag_api_callers.py', '--cfg-path', '/tmp/tmp1jjq2tc1']
+[2024-12-12T19:09:55.262+0000] {standard_task_runner.py:85} INFO - Job 613: Subtask fetch_api2
+[2024-12-12T19:09:55.400+0000] {task_command.py:410} INFO - Running <TaskInstance: api_analysis_pipeline.fetch_api2 manual__2024-12-12T19:09:50.486013+00:00 [running]> on host f37efdfaee43
+[2024-12-12T19:09:55.486+0000] {taskinstance.py:1545} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='api_analysis_pipeline' AIRFLOW_CTX_TASK_ID='fetch_api2' AIRFLOW_CTX_EXECUTION_DATE='2024-12-12T19:09:50.486013+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-12T19:09:50.486013+00:00'
+[2024-12-12T19:10:00.213+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connectionpool.py", line 714, in urlopen
+    httplib_response = self._make_request(
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connectionpool.py", line 403, in _make_request
+    self._validate_conn(conn)
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connectionpool.py", line 1053, in _validate_conn
+    conn.connect()
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connection.py", line 419, in connect
+    self.sock = ssl_wrap_socket(
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/util/ssl_.py", line 449, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/util/ssl_.py", line 493, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/usr/local/lib/python3.9/ssl.py", line 501, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/usr/local/lib/python3.9/ssl.py", line 1041, in _create
+    self.do_handshake()
+  File "/usr/local/lib/python3.9/ssl.py", line 1310, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLEOFError: EOF occurred in violation of protocol (_ssl.c:1129)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connectionpool.py", line 798, in urlopen
+    retries = retries.increment(
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/util/retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='rest.bandsintown.com', port=443): Max retries exceeded with url: /artists/Lady%20Gaga?app_id=123123 (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_api_callers.py", line 26, in fetch_api_data
+    response = requests.get(api_url, params)
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/adapters.py", line 517, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='rest.bandsintown.com', port=443): Max retries exceeded with url: /artists/Lady%20Gaga?app_id=123123 (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)')))
+[2024-12-12T19:10:00.272+0000] {taskinstance.py:1345} INFO - Marking task as UP_FOR_RETRY. dag_id=api_analysis_pipeline, task_id=fetch_api2, execution_date=20241212T190950, start_date=20241212T190955, end_date=20241212T191000
+[2024-12-12T19:10:00.305+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 613 for task fetch_api2 (HTTPSConnectionPool(host='rest.bandsintown.com', port=443): Max retries exceeded with url: /artists/Lady%20Gaga?app_id=123123 (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1129)'))); 386)
+[2024-12-12T19:10:00.342+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2024-12-12T19:10:00.364+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

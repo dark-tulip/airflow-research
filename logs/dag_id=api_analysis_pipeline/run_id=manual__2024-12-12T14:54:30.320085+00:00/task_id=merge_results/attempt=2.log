@@ -1,0 +1,28 @@
+[2024-12-12T14:59:38.680+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: api_analysis_pipeline.merge_results manual__2024-12-12T14:54:30.320085+00:00 [queued]>
+[2024-12-12T14:59:38.684+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: api_analysis_pipeline.merge_results manual__2024-12-12T14:54:30.320085+00:00 [queued]>
+[2024-12-12T14:59:38.684+0000] {taskinstance.py:1308} INFO - Starting attempt 2 of 3
+[2024-12-12T14:59:38.690+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): merge_results> on 2024-12-12 14:54:30.320085+00:00
+[2024-12-12T14:59:38.695+0000] {standard_task_runner.py:57} INFO - Started process 996 to run task
+[2024-12-12T14:59:38.697+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'api_analysis_pipeline', 'merge_results', 'manual__2024-12-12T14:54:30.320085+00:00', '--job-id', '501', '--raw', '--subdir', 'DAGS_FOLDER/dag_api_callers.py', '--cfg-path', '/tmp/tmprxd_3lw0']
+[2024-12-12T14:59:38.699+0000] {standard_task_runner.py:85} INFO - Job 501: Subtask merge_results
+[2024-12-12T14:59:38.744+0000] {task_command.py:410} INFO - Running <TaskInstance: api_analysis_pipeline.merge_results manual__2024-12-12T14:54:30.320085+00:00 [running]> on host a6279f42b2e1
+[2024-12-12T14:59:38.793+0000] {taskinstance.py:1545} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='api_analysis_pipeline' AIRFLOW_CTX_TASK_ID='merge_results' AIRFLOW_CTX_EXECUTION_DATE='2024-12-12T14:54:30.320085+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-12T14:54:30.320085+00:00'
+[2024-12-12T14:59:38.795+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_api_callers.py", line 37, in merge_results
+    all_data = pd.concat([pd.read_csv(f'/opt/airflow/data/{file}') for file in files])
+  File "/home/airflow/.local/lib/python3.9/site-packages/pandas/util/_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/pandas/core/reshape/concat.py", line 368, in concat
+    op = _Concatenator(
+  File "/home/airflow/.local/lib/python3.9/site-packages/pandas/core/reshape/concat.py", line 425, in __init__
+    raise ValueError("No objects to concatenate")
+ValueError: No objects to concatenate
+[2024-12-12T14:59:38.803+0000] {taskinstance.py:1345} INFO - Marking task as UP_FOR_RETRY. dag_id=api_analysis_pipeline, task_id=merge_results, execution_date=20241212T145430, start_date=20241212T145938, end_date=20241212T145938
+[2024-12-12T14:59:38.808+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 501 for task merge_results (No objects to concatenate; 996)
+[2024-12-12T14:59:38.834+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2024-12-12T14:59:38.854+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

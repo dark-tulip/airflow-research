@@ -1,0 +1,22 @@
+[2024-12-12T16:00:01.959+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather_pipeline.download_weather_data scheduled__2024-12-12T15:00:00+00:00 [queued]>
+[2024-12-12T16:00:01.963+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather_pipeline.download_weather_data scheduled__2024-12-12T15:00:00+00:00 [queued]>
+[2024-12-12T16:00:01.963+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 3
+[2024-12-12T16:00:01.969+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): download_weather_data> on 2024-12-12 15:00:00+00:00
+[2024-12-12T16:00:01.974+0000] {standard_task_runner.py:57} INFO - Started process 1248 to run task
+[2024-12-12T16:00:01.977+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'weather_pipeline', 'download_weather_data', 'scheduled__2024-12-12T15:00:00+00:00', '--job-id', '531', '--raw', '--subdir', 'DAGS_FOLDER/dag_weather.py', '--cfg-path', '/tmp/tmpzh0y9zvs']
+[2024-12-12T16:00:01.979+0000] {standard_task_runner.py:85} INFO - Job 531: Subtask download_weather_data
+[2024-12-12T16:00:02.012+0000] {task_command.py:410} INFO - Running <TaskInstance: weather_pipeline.download_weather_data scheduled__2024-12-12T15:00:00+00:00 [running]> on host c89d57c81a72
+[2024-12-12T16:00:02.061+0000] {taskinstance.py:1545} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='weather_pipeline' AIRFLOW_CTX_TASK_ID='download_weather_data' AIRFLOW_CTX_EXECUTION_DATE='2024-12-12T15:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-12-12T15:00:00+00:00'
+[2024-12-12T16:00:02.667+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_weather.py", line 24, in download_weather_data
+    flattened_data.to_csv(csv_file_path, index=False, mode='a', header=not os.path.exists(csv_file_path))
+NameError: name 'os' is not defined
+[2024-12-12T16:00:02.699+0000] {taskinstance.py:1345} INFO - Marking task as UP_FOR_RETRY. dag_id=weather_pipeline, task_id=download_weather_data, execution_date=20241212T150000, start_date=20241212T160001, end_date=20241212T160002
+[2024-12-12T16:00:02.719+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 531 for task download_weather_data (name 'os' is not defined; 1248)
+[2024-12-12T16:00:02.748+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2024-12-12T16:00:02.769+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

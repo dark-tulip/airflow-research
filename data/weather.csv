@@ -1,0 +1,10 @@
+latitude,longitude,generationtime_ms,utc_offset_seconds,timezone,timezone_abbreviation,elevation,current_units_time,current_units_interval,current_units_temperature_2m,current_units_precipitation,current_units_weather_code,current_units_pressure_msl,current_time,current_interval,current_temperature_2m,current_precipitation,current_weather_code,current_pressure_msl
+22.125,71.0,0.034928321838378906,18000,Asia/Almaty,+05,203.0,iso8601,seconds,°C,mm,wmo code,hPa,2024-12-12T22:00,900,15.6,0.0,1,1015.9
+22.125,71.0,0.04398822784423828,18000,Asia/Almaty,+05,203.0,iso8601,seconds,°C,mm,wmo code,hPa,2024-12-12T22:15,900,15.4,0.0,1,1015.8
+22.125,71.0,0.04100799560546875,18000,Asia/Almaty,+05,203.0,iso8601,seconds,°C,mm,wmo code,hPa,2024-12-12T22:15,900,15.4,0.0,1,1015.8
+22.125,71.0,0.04601478576660156,18000,Asia/Almaty,+05,203.0,iso8601,seconds,°C,mm,wmo code,hPa,2024-12-12T22:30,900,15.3,0.0,1,1015.7
+22.125,71.0,0.028967857360839844,18000,Asia/Almaty,+05,203.0,iso8601,seconds,°C,mm,wmo code,hPa,2024-12-12T23:00,900,15.1,0.0,1,1015.5
+22.125,71.0,0.1900196075439453,18000,Asia/Almaty,+05,203.0,iso8601,seconds,°C,mm,wmo code,hPa,2024-12-12T23:00,900,15.1,0.0,1,1015.5
+22.125,71.0,0.033020973205566406,18000,Asia/Almaty,+05,203.0,iso8601,seconds,°C,mm,wmo code,hPa,2024-12-12T23:00,900,15.1,0.0,1,1015.5
+22.125,71.0,0.02205371856689453,18000,Asia/Almaty,+05,203.0,iso8601,seconds,°C,mm,wmo code,hPa,2024-12-12T23:00,900,15.1,0.0,1,1015.5
+22.125,71.0,0.4429817199707031,18000,Asia/Almaty,+05,203.0,iso8601,seconds,°C,mm,wmo code,hPa,2024-12-13T00:00,900,14.7,0.0,2,1015.8
